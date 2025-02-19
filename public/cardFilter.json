@@ -1,0 +1,99 @@
+[
+    {
+        "eventId": "summer-beach-party-2024-01",
+        "eventName": "Summer Beach Party 2024",
+        "ageRestriction": "21+",
+        "priceRange": "$50-$100",
+        "genre": "House",
+        "eventDescription": "Join us for the ultimate summer beach party featuring international DJs, beachfront dancing, and unforgettable moments under the stars.",
+        "eventFeatures": [
+            "International DJs",
+            "VIP Tables",
+            "Food Stations",
+            "Beachfront Location",
+            "Premium Bar",
+            "Security Service"
+        ],
+        "lineup": [
+            { "artist": "DJ Smith", "time": "8:00 PM - 9:30 PM" },
+            { "artist": "Sarah Groove", "time": "9:30 PM - 11:00 PM" },
+            { "artist": "The Beat Masters", "time": "11:00 PM - 12:30 AM" },
+            { "artist": "DJ Maxwell", "time": "12:30 AM - Close" }
+        ],
+        "date": "July 15, 2024",
+        "time": "8:00 PM",
+        "venue": {
+            "name": "W Bali - Seminyak",
+            "address": "Jl. Petitenget, Seminyak, Bali"
+        },
+        "media": {
+            "videoUrl": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            "videoTitle": "Rick Astley - Never Gonna Give You Up (Official Music Video)"
+        }
+    },
+     {
+        "eventId": "summer-beach-party-2024-02",
+        "title": "Summer Beach Party 2024",
+        "details": {
+            "date": "July 16, 2024",
+            "time": "8:00 PM",
+            "venue": {
+                "name": "W Bali - Seminyak",
+                "address": "Jl. Petitenget, Seminyak, Bali"
+            },
+            "age": "21+",
+            "price": "$50-$100",
+            "musicGenre": "House"
+        },
+        "description": "An ultimate summer beach party with international DJs, beachfront dancing, and unforgettable moments.",
+        "features": [
+            "International DJs",
+            "VIP Tables",
+            "Food Stations",
+            "Beachfront Location",
+            "Premium Bar",
+            "Security Service"
+        ],
+        "schedule": [
+            { "dj": "DJ Smith", "time": "8:00 PM - 9:30 PM" },
+            { "dj": "Sarah Groove", "time": "9:30 PM - 11:00 PM" },
+            { "dj": "The Beat Masters", "time": "11:00 PM - 12:30 AM" },
+            { "dj": "DJ Maxwell", "time": "12:30 AM - Close" }
+        ],
+        "media": {
+            "video": {
+                "title": "Rick Astley - Never Gonna Give You Up (Official Music Video)",
+                "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+            }
+        }
+    },
+     {
+        "eventId": "summer-beach-party-2024-03",
+         "basicInfo": {
+            "name": "Summer Beach Party 2024",
+            "date": "July 15, 2024",
+            "time": "8:00 PM",
+            "location": "W Bali - Seminyak, Jl. Petitenget, Seminyak, Bali",
+            "age": "21+",
+            "price": "$50 - $100",
+            "music": "House"
+        },
+        "about": "Join us for the ultimate summer beach party featuring international DJs, beachfront dancing, and unforgettable moments under the stars.",
+        "highlights": {
+            "dj_s": ["International DJs", "VIP Tables", "Food Stations"],
+            "location_s": ["Beachfront Location", "Premium Bar", "Security Service"]
+        },
+        "performers": {
+            "dj_smith": "8:00 PM - 9:30 PM",
+            "sarah_groove": "9:30 PM - 11:00 PM",
+            "beat_masters": "11:00 PM - 12:30 AM",
+            "dj_maxwell": "12:30 AM - Close"
+        },
+        "multimedia": {
+            "video": {
+                "title": "Rick Astley - Never Gonna Give You Up",
+                "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+            }
+        }
+    }
+]
