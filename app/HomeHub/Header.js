@@ -1,87 +1,122 @@
-// Header.js
-"use client";
+"use client"
 
-import React, { useState, useEffect, useRef } from 'react';
-import { FaMoon, FaBars } from 'react-icons/fa';
-import MenuModal from './MenuModal';
-import { motion } from 'framer-motion';  // Import framer-motion
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import CssBaseline from '@mui/material/CssBaseline';
+import Divider from '@mui/material/Divider';
+import Drawer from '@mui/material/Drawer';
+import IconButton from '@mui/material/IconButton';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemText from '@mui/material/ListItemText';
+import MenuIcon from '@mui/icons-material/Menu';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Link from 'next/link';  // Import Link from Next.js
 
-const Navbar = () => {
-  const [prevScrollPos, setPrevScrollPos] = useState(0);
-  const [visible, setVisible] = useState(true);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const navbarRef = useRef(null);
-  const [navbarHeight, setNavbarHeight] = useState(0);
+const drawerWidth = 240;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollPos = window.scrollY;
-      setVisible(prevScrollPos > currentScrollPos || currentScrollPos < 50);
-      setPrevScrollPos(currentScrollPos);
-    };
+// Updated navItems with the new page names
+const navItems = [
+  { label: 'Event_Blog', href: '/event-deep-dive-blog' },
+  { label: 'Gallery_Viewer', href: '/gallery-viewer' },
+  { label: 'Venue_Page', href: '/individual-venue-page' },
+  { label: 'Submit_Event', href: '/submit-event' },
+];
 
-    window.addEventListener('scroll', handleScroll);
+function DrawerAppBar(props) {
+  const { window } = props;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [prevScrollPos, visible]);
-
-  useEffect(() => {
-    if (navbarRef.current) {
-      setNavbarHeight(navbarRef.current.offsetHeight);
-    }
-  }, []);
-
-  const navbarStyle = {
-    transform: visible ? 'translateY(0)' : 'translateY(-100%)',
-    transition: 'transform 0.3s ease-in-out',
+  const handleDrawerToggle = () => {
+    setMobileOpen((prevState) => !prevState);
   };
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-    document.body.style.overflow = menuOpen ? 'auto' : 'hidden';
-  };
+  const drawer = (
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+      <Typography variant="h6" sx={{ my: 2 }}>
+        LOGO
+      </Typography>
+      <Divider />
+      <List>
+        {navItems.map((item) => (
+          <ListItem key={item.label} disablePadding>
+            <ListItemButton sx={{ textAlign: 'center' }}>
+              <Link href={item.href} passHref>  {/* Using item.href for correct navigation */}
+                <ListItemText primary={item.label} />
+              </Link>
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
 
-  const closeMenu = () => {
-    setMenuOpen(false);
-    document.body.style.overflow = 'auto';
-  };
-
-  const handleMenuClick = (e) => {
-    closeMenu();
-    if (e.target.href) {
-      window.location.href = e.target.href;
-    }
-  };
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <>
-      <motion.nav  // Wrap in motion.nav
-        ref={navbarRef}
-        style={navbarStyle}
-        className="fixed top-0 w-full z-50 py-4 md:py-6 backdrop-blur-xl bg-white/10 shadow-lg transition-transform duration-300 px-6"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
-      >
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <div className="flex items-center">
-            <a href="/" className="flex items-center transform hover:scale-105 transition-transform font-bold text-xl">
-              LOGO
-            </a>
-          </div>
-          <div className="flex items-center gap-2 md:gap-6">
-            <button className="p-1.5 md:p-2 hover:bg-white/10 rounded-full transition-colors text-black">
-              <FaMoon className="text-lg md:text-xl" aria-hidden="true" />
-            </button>
-            <button className="p-1.5 md:p-2 hover:bg-white/10 rounded-full transition-colors text-black" onClick={toggleMenu}>
-              <FaBars className="text-lg md:text-xl transition-transform duration-300" aria-hidden="true" />
-            </button>
-          </div>
-        </div>
-      </motion.nav>
-      <MenuModal isOpen={menuOpen} onClose={closeMenu} handleMenuClick={handleMenuClick} />
-    </>
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <AppBar component="nav" sx={{ backgroundColor: 'black' }}>  {/* Set background color to black */}
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+          >
+            LOGO
+          </Typography>
+          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+            {navItems.map((item) => (
+              <Button key={item.label} sx={{ color: '#fff' }}>
+                <Link href={item.href} passHref>  {/* Using item.href for correct navigation */}
+                  {item.label}
+                </Link>
+              </Button>
+            ))}
+          </Box>
+        </Toolbar>
+      </AppBar>
+      <nav>
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </nav>
+    </Box>
   );
+}
+
+DrawerAppBar.propTypes = {
+  /**
+   * Injected by the documentation to work in an iframe.
+   * You won't need it on your project.
+   */
+  window: PropTypes.func,
 };
 
-export default Navbar;
+export default DrawerAppBar;
