@@ -34,14 +34,14 @@ const SubmitEventPage = () => {
   };
 
   const backgroundImage =
-    "https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D";
+    "https://images.unsplash.com/photo-1496337589254-7e19d01cec44";
 
   return (
     <div
       className="bg-cover bg-center min-h-screen pt-24 px-6 pb-24"
       style={{ backgroundImage: `url(${backgroundImage})` }}
     >
-      <div className="max-w-3xl mx-auto bg-white bg-opacity-80 backdrop-blur-sm rounded-xl p-8">
+      <div className="max-w-3xl mx-auto rounded-xl p-8 bg-white/30 backdrop-filter backdrop-blur-md shadow-lg">
         <h1 className="text-4xl md:text-6xl font-space-grotesk font-bold mb-8 text-gray-800">Submit Your Event</h1>
         <p className="text-xl text-gray-700 mb-12">Share your upcoming event with our community</p>
         <EventForm formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />

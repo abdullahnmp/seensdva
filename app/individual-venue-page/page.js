@@ -1,4 +1,5 @@
 
+import ImageBanner from "../HomeHub/ImageBanner";
 import AboutSection from "./AboutSection";
 import AmenitiesSection from "./AmenitiesSection";
 import LocationSection from "./LocationSection";
@@ -31,7 +32,7 @@ const Page = () => {
       {
         id: 1,
         imageUrl:
-          "https://images.unsplash.com/photo-1672061369623-8b19b820578c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1672061369623-8b19b820578c",
         eventName: "Summer Sunset Sessions",
         date: "March 15, 2024",
         description:
@@ -41,7 +42,7 @@ const Page = () => {
       {
         id: 2,
         imageUrl:
-          "https://images.unsplash.com/photo-1672061369623-8b19b820578c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1672061369623-8b19b820578c",
         eventName: "EDM Nights",
         date: "March 22, 2024",
         description:
@@ -51,7 +52,7 @@ const Page = () => {
       {
         id: 3,
         imageUrl:
-          "https://images.unsplash.com/photo-1672061369623-8b19b820578c?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+          "https://images.unsplash.com/photo-1672061369623-8b19b820578c",
         eventName: "Deep House Fridays",
         date: "March 29, 2024",
         description:
@@ -88,13 +89,13 @@ const Page = () => {
   };
 
   return (
-    <main className="md:pt-10 pt-4 ">
+    <main className="md:pt-9 pt-4 ">
        <VenueHero
           imageUrl={venueData.imageUrl}
           venueName={venueData.venueName}
           address={venueData.address}
         />
-      <div className="max-w-7xl mx-auto px-6 pb-24">
+      <div className="max-w-7xl mx-auto px-6 sm:pb-24">
        
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           <div className="lg:col-span-2 space-y-12">
@@ -119,7 +120,8 @@ const Page = () => {
           </div>
         </div>
       </div>
-      {/* <Banner/> */}
+      
+      <ImageBanner/>
     </main>
   );
 };

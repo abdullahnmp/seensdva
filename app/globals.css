@@ -94,3 +94,20 @@ body {
   /* font-weight: <weight>; */
   font-style: normal;
 }
+
+
+/* styles/globals.css */
+
+body {
+  font-family: var(--font-geist-sans), sans-serif; /* Use the CSS variables */
+}
+
+/* Optional: If you want to use Geist Mono for specific elements */
+.geist-mono {
+  font-family: var(--font-geist-mono), monospace;
+}
+
+/*optional roboto*/
+.roboto{
+    font-family: var(--font-roboto), sans-serif;
+}

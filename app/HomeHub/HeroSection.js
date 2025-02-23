@@ -33,7 +33,7 @@ const HeroSection = () => {
 
   return (
     <motion.section
-      className="relative h-[500px] bg-cover bg-center mt-[1rem]"
+      className="relative h-[600px] bg-cover bg-center sm:mt-9"
       style={{ backgroundImage: `url(${backgroundImage})` }}
       variants={containerVariants}
       initial="hidden"

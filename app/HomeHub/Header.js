@@ -1,7 +1,6 @@
-"use client"
+"use client";
 
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -12,111 +11,100 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
-import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import Link from 'next/link';  // Import Link from Next.js
+import Link from 'next/link';
+import Image from 'next/image'; // Import Next.js Image component
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 const drawerWidth = 240;
 
-// Updated navItems with the new page names
 const navItems = [
-  { label: 'Event_Blog', href: '/event-deep-dive-blog' },
-  { label: 'Gallery_Viewer', href: '/gallery-viewer' },
-  { label: 'Venue_Page', href: '/individual-venue-page' },
-  { label: 'Submit_Event', href: '/submit-event' },
+    { label: 'Event Blog', href: '/event-deep-dive-blog' },
+    { label: 'Gallery Viewer', href: '/gallery-viewer' },
+    { label: 'Venue Page', href: '/individual-venue-page' },
+    { label: 'Submit Event', href: '/submit-event' },
 ];
 
-function DrawerAppBar(props) {
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+function DrawerAppBar() {
+    const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const handleDrawerToggle = () => {
-    setMobileOpen((prevState) => !prevState);
-  };
+    const handleDrawerToggle = () => {
+        setMobileOpen(!mobileOpen);
+    };
 
-  const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
-        LOGO
-      </Typography>
-      <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item.label} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              <Link href={item.href} passHref>  {/* Using item.href for correct navigation */}
-                <ListItemText primary={item.label} />
-              </Link>
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-    </Box>
+    const drawer = (
+      <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+          <Link href="/" style={{ display: 'block', textAlign: 'center' }}>
+              <Image
+                  src="/logo.png" // Path to your logo in the public folder
+                  alt="Logo"
+                  width={60}   // Adjust width as needed
+                  height={50}  // Adjust height as needed
+                  style={{ cursor: 'pointer', display: 'inline-block' }} // Add display: inline-block
+              />
+          </Link>
+          <Divider />
+          <List>
+              {navItems.map((item) => (
+                  <ListItem key={item.label} disablePadding>
+                      <ListItemButton component={Link} href={item.href} sx={{ textAlign: 'center' }}>
+                          <ListItemText primary={item.label} />
+                      </ListItemButton>
+                  </ListItem>
+              ))}
+          </List>
+      </Box>
   );
 
-  const container = window !== undefined ? () => window().document.body : undefined;
+    return (
+        <Box sx={{ display: 'flex' }}>
+            <CssBaseline />
+            <AppBar component="nav" sx={{ backgroundColor: 'black', padding: "14px 0" }}>
+                <Toolbar>
+                    {/* Left Side: Logo with Link */}
+                    <Link href="/" passHref>
+                            <Image
+                                src="/logo.jpg"
+                                alt="Logo"
+                                width={60}  //  width as needed
+                                height={50} //  height as needed
+                                style={{cursor: 'pointer'}}
+                            />
+                    </Link>
 
-  return (
-    <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
-      <AppBar component="nav" sx={{ backgroundColor: 'black' }}>  {/* Set background color to black */}
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            LOGO
-          </Typography>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button key={item.label} sx={{ color: '#fff' }}>
-                <Link href={item.href} passHref>  {/* Using item.href for correct navigation */}
-                  {item.label}
-                </Link>
-              </Button>
-            ))}
-          </Box>
-        </Toolbar>
-      </AppBar>
-      <nav>
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: 'block', sm: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </nav>
-    </Box>
-  );
+
+                    {/* Right Side: Nav Icon */}
+                    <Box sx={{ flexGrow: 1 }} /> {/* Spacer */}
+                    <IconButton
+                        color="inherit"
+                        aria-label="open drawer"
+                        edge="end"
+                        onClick={handleDrawerToggle}
+                        sx={{ ml: 2 }}
+                    >
+                        <GiHamburgerMenu />
+                    </IconButton>
+                </Toolbar>
+            </AppBar>
+
+            {/* Drawer */}
+            <Drawer
+                variant="temporary"
+                open={mobileOpen}
+                onClose={handleDrawerToggle}
+                ModalProps={{
+                    keepMounted: true,
+                }}
+                sx={{
+                    display: { xs: 'block', sm: 'block' },
+                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                }}
+            >
+                {drawer}
+            </Drawer>
+        </Box>
+    );
 }
-
-DrawerAppBar.propTypes = {
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
 
 export default DrawerAppBar;

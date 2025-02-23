@@ -4,7 +4,7 @@ import HeroSection from './components/HeroSection';
 import ArticleContent from './components/ArticleContent';
 import RelatedEvent from './components/RelatedEvent';
 import MoreStories from './components/MoreStories';
-import Banner from '../HomeHub/Banner';
+import ImageBanner from '../HomeHub/ImageBanner';
 
 const EventDeepDiveBlog = () => {
   return (
@@ -17,7 +17,7 @@ const EventDeepDiveBlog = () => {
         </div>
       </div>
       <MoreStories />
-      <Banner/>
+      <ImageBanner/>
     </main>
   );
 };

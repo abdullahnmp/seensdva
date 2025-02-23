@@ -25,6 +25,7 @@ export default function HomeHub() {
       <ImageBanner />
       <VisualsA />
       <EventsContainer />
+      <ImageBanner />
     </motion.main>
   );
 }
