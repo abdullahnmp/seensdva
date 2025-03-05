@@ -3,28 +3,23 @@ import { CiLocationOn } from "react-icons/ci";
 import React, { useState } from "react";
 import GuestListModal from "./EventsContainer_GuestListModal";
 
-const Recommended = ({location}) => {
-  const [modalOpen, setModalOpen] = useState(false);
+const Recommended = ({ location }) => {
+    const [modalOpen, setModalOpen] = useState(false);
 
-  const openModal = () => {
-    setModalOpen(true);
-    // document.body.style.overflow = "hidden"; // Removed
-  };
+    const openModal = () => {
+        setModalOpen(true);
+    };
 
     const closeModal = () => {
         setModalOpen(false);
-        // document.body.style.overflow = "auto"; // Removed
     };
 
-    
-
-  return (
+    return (
         <div className="w-full relative">
             <h2 className="text-5xl font-bold border-b-2 pb-6 mb-6">
                 January 22, 2025
             </h2>
             <div className="w-full h-96 remended-big-card rounded-xl overflow-hidden shadow-lg bg-cyan-300">
-
                 <div className=" absolute bottom-1 left-9">
                     <div className=" pt-4 pb-2">
                         <div className="  py-4">
@@ -43,7 +38,7 @@ const Recommended = ({location}) => {
                         <div className="flex gap-4">
                             <span className=" flex items-center rounded-full py-1  text-slate-50 mr-2 mb-2">
                                 <CiLocationOn className="text-xl" />
-                                 Tribe Ball
+                                Tribe Ball
                             </span>
                             <span className="inline-block bg-gray-200 bg-opacity-40 rounded-md px-3 py-1 text-slate-50 mr-2 mb-2">
                                 Deep House Seminyak
@@ -62,9 +57,10 @@ const Recommended = ({location}) => {
                         </button>
                     </div>
                 </div>
-                {modalOpen && (
-                    <GuestListModal isOpen={modalOpen} onClose={closeModal} />
-                )}
+
+                {/* Use the modal component directly.  No need to conditionally render with && */}
+                <GuestListModal isOpen={modalOpen} onClose={closeModal} />
+
             </div>
         </div>
     );

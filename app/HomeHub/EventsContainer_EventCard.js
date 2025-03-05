@@ -1,7 +1,7 @@
 // components/EventCard.jsx
 "use client";
 
-import React, { useState, useEffect } from 'react'; // Import useState and useEffect
+import React from 'react';
 import Link from 'next/link';
 import { CiLocationOn } from "react-icons/ci";
 import { FaArrowAltCircleRight } from "react-icons/fa";
@@ -19,10 +19,10 @@ const EventCard = ({ event }) => {
     hidden: { opacity: 0, y: 50 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
-
-  // Function to truncate the description to a specific number of *words*
+  
+    // শব্দ সংখ্যা সীমিত করার ফাংশন
   const truncateDescriptionToWords = (desc, maxWords) => {
-    if (!desc) return ""; // Handle null/undefined
+    if (!desc) return "";
     const words = desc.split(/\s+/); // Split by any whitespace
     if (words.length <= maxWords) {
       return desc;
@@ -30,53 +30,16 @@ const EventCard = ({ event }) => {
     return words.slice(0, maxWords).join(" ") + "...";
   };
 
-  // State to store the window width
-  const [windowWidth, setWindowWidth] = useState(null); // Initialize as null
-
-  // Use useEffect to get the window width on the client-side
-  useEffect(() => {
-    // Check if window is defined (client-side) before accessing it
-    if (typeof window !== 'undefined') {
-      setWindowWidth(window.innerWidth);
-
-      const handleResize = () => {
-        setWindowWidth(window.innerWidth);
-      };
-
-      window.addEventListener('resize', handleResize);
-
-      // Cleanup function to remove the event listener
-      return () => {
-        window.removeEventListener('resize', handleResize);
-      };
-    }
-  }, []); // Empty dependency array ensures this effect runs only once on mount
-
-
-    // Render different content based on whether windowWidth is available
-    const renderDescription = () => {
-        if (windowWidth === null) {
-            return <p className='mt-4'>Loading...</p>; // Or some placeholder
-        }
-
-        return (
-            <p className='mt-4'>
-                {truncateDescriptionToWords(description, windowWidth < 640 ? 6 : (windowWidth < 768 ? 20 : 50))}
-            </p>
-        );
-    };
-
-
   return (
-    <Link href="/event/new" >
+    <Link href="/event/new">
       <motion.div
         ref={ref}
-        className="flex  bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+        className="flex bg-white rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
         variants={cardVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
       >
-        <div className="w-[40%] sm:w-[200px] md:w-[300px] relative overflow-hidden"> {/* Responsive width */}
+        <div className="w-[40%] sm:w-[200px] md:w-[300px] relative overflow-hidden">
           <img
             src={imageUrl}
             alt={title}
@@ -90,24 +53,24 @@ const EventCard = ({ event }) => {
         </div>
         <div className="flex-1 p-4 md:p-6 flex flex-col justify-between">
           <div className="space-y-2 md:space-y-4">
-            <div className="block">
-              <h3 className="font-space-grotesk text-lg md:text-2xl font-bold text-gray-900">
-                {title}
-              </h3>
-              {/* Responsive Description Length - WORDS this time */}
-                {renderDescription()}
-            </div>
-            <div className="flex items-center gap-2 md:gap-3 flex-wrap">
-              <span className="bg-gray-100 text-gray-800 px-2 md:px-4 py-1 md:py-1.5 rounded-md text-xs md:text-sm font-medium">{category}</span>
-              <span className="text-gray-600 text-xs md:text-base font-medium flex items-center gap-1 md:gap-2">
-                <CiLocationOn />
-                {location}
-              </span>
-              <span className="text-gray-500 text-xs md:text-sm flex items-center gap-1">
-                <FaArrowAltCircleRight />
-                {city}
-              </span>
-            </div>
+            <h3 className="font-space-grotesk text-lg md:text-2xl font-bold text-gray-900">
+              {title}
+            </h3>
+            {/* ডেসক্রিপশন দেখানোর জন্য */}
+            <p className="mt-4 hidden sm:block">
+              {truncateDescriptionToWords(description, 10)} {/* ১০ শব্দ */}
+            </p>
+          </div>
+          <div className="flex items-center gap-2 md:gap-3 flex-wrap">
+            <span className="bg-gray-100 text-gray-800 px-2 md:px-4 py-1 md:py-1.5 rounded-md text-xs md:text-sm font-medium">{category}</span>
+            <span className="text-gray-600 text-xs md:text-base font-medium flex items-center gap-1 md:gap-2">
+              <CiLocationOn />
+              {location}
+            </span>
+            <span className="text-gray-500 text-xs md:text-sm flex items-center gap-1">
+              <FaArrowAltCircleRight />
+              {city}
+            </span>
           </div>
           <div className="flex gap-2 md:gap-3 mt-2">
             <button className="px-3 md:px-6 py-1.5 md:py-2 rounded-md font-space-grotesk text-xs md:text-base text-center bg-black text-white">

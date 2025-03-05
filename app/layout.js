@@ -1,5 +1,6 @@
 // app/layout.js
-import { Geist, Geist_Mono, Roboto } from 'next/font/google'; // Import Roboto
+
+import { Geist, Geist_Mono, Roboto } from 'next/font/google';
 import "./globals.css";
 import Footer from "./HomeHub/Footer";
 import Header from "./HomeHub/Header";
@@ -14,13 +15,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const roboto = Roboto({ // Load Roboto using next/font
+const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
   subsets: ['latin'],
-  variable: '--font-roboto', // Optional: Define a CSS variable for Roboto
-  display: 'swap', // Recommended
+  variable: '--font-roboto',
+  display: 'swap',
 });
-
 
 export const metadata = {
   title: "Seensd",
@@ -30,16 +30,15 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable}`}>
-      {/* Add roboto.variable to the className */}
       <head>
         {/* Remove the Google Fonts <link> tags from here */}
       </head>
-      <body
-        className={`antialiased box-border w-full`} // Moved font classes to body tag
-      >
+      <body className={`antialiased box-border w-full`}>
         <Header />
-        <div style={{ paddingTop: "55px" }}></div>
-        {children}
+        <div className="mt-[-20px]"> 
+        {/* 64px is a typical height for a fixed header, adjust as needed */}
+          {children}
+        </div>
         <Footer />
       </body>
     </html>
