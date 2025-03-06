@@ -1,136 +1,109 @@
-// Header.js
-"use client";
-
-import React, { forwardRef } from 'react'; // Import forwardRef
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import CssBaseline from '@mui/material/CssBaseline';
-import Divider from '@mui/material/Divider';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemText from '@mui/material/ListItemText';
-import Toolbar from '@mui/material/Toolbar';
-// import Typography from '@mui/material/Typography'; // Removed unused import
+// components/Header.js
+'use client';
+import React, { useState, forwardRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { GiHamburgerMenu } from 'react-icons/gi';
-import useScrollTrigger from '@mui/material/useScrollTrigger';
-import Slide from '@mui/material/Slide';
+import { FaTimes } from 'react-icons/fa';
+import { motion, AnimatePresence } from 'framer-motion';
 
-
-const drawerWidth = 240;
-
-const navItems = [
-    { label: 'Event Blog', href: '/event-deep-dive-blog' },
-    { label: 'Gallery Viewer', href: '/gallery-viewer' },
-    { label: 'Venue Page', href: '/individual-venue-page' },
-    { label: 'Submit Event', href: '/submit-event' },
-];
-
-function HideOnScroll(props) {
-    const { children } = props;
-    const trigger = useScrollTrigger();
-
-    return (
-        <Slide appear={false} direction="down" in={!trigger}>
-            {children}
-        </Slide>
-    );
-}
-
-const DrawerAppBar = forwardRef((props, ref) => { // Use forwardRef
-    const [mobileOpen, setMobileOpen] = React.useState(false);
+const DrawerAppBar = forwardRef((props, ref) => {
+    const [mobileOpen, setMobileOpen] = useState(false);
 
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
 
+    const navItems = [
+        { label: 'Event Blog', href: '/event-deep-dive-blog' },
+        { label: 'Gallery Viewer', href: '/gallery-viewer' },
+        { label: 'Venue Page', href: '/individual-venue-page' },
+        { label: 'Submit Event', href: '/submit-event' },
+        { label: 'Contact', href: '/contact' },
+    ];
 
-    const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Link href="/" style={{ display: 'block', textAlign: 'center' }}>
-                <Image
-                    src="/logo.png"
-                    alt="Logo"
-                    width={45}
-                    height={38}
-                    style={{ cursor: 'pointer', display: 'inline-block' }}
-                />
-            </Link>
-            <Divider />
-            <List>
-                {navItems.map((item) => (
-                    <ListItem key={item.label} disablePadding>
-                        <ListItemButton component={Link} href={item.href} sx={{ textAlign: 'center' }}>
-                            <ListItemText primary={item.label} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List>
-        </Box>
-    );
+    const drawerVariants = {
+        hidden: { x: '-100%' },
+        visible: { x: 0, transition: { duration: 0.3 } },
+        exit: { x: '-100%', transition: { duration: 0.2 } },
+    };
 
     return (
-        <Box sx={{ display: 'flex' }} ref={ref}>
-            <CssBaseline />
-            <HideOnScroll {...props}>
-                <AppBar
-                    component="nav"
-                    sx={{
-                        backgroundColor: 'black',
-                        padding: "8px 0",
-                        position: 'fixed',
-                        top: 0,
-                        width: '100%',
-                        zIndex: 1100,
+        <header ref={ref} className="fixed w-full z-50 bg-black">
+            <div className="flex items-center justify-between p-4">
+                <Link href="/" passHref>
+                    <Image
+                        src="/logo.jpg"
+                        alt="Logo"
+                        width={45}
+                        height={38}
+                        style={{ cursor: 'pointer' }}
+                    />
+                </Link>
 
-                    }}
+                <button
+                    onClick={handleDrawerToggle}
+                    className="text-white text-2xl focus:outline-none"
+                    aria-label="Open Menu"
                 >
-                    <Toolbar>
-                        <Link href="/" passHref>
-                            <Image
-                                src="/logo.jpg"
-                                alt="Logo"
-                                width={45}
-                                height={38}
-                                style={{ cursor: 'pointer' }}
-                            />
-                        </Link>
+                    <GiHamburgerMenu />
+                </button>
+            </div>
 
-                        <Box sx={{ flexGrow: 1 }} />
-                        <IconButton
-                            color="inherit"
-                            aria-label="open drawer"
-                            edge="end"
-                            onClick={handleDrawerToggle}
-                            sx={{ ml: 2, fontSize: '1.2rem' }}
-                        >
-                            <GiHamburgerMenu />
-                        </IconButton>
-                    </Toolbar>
-                </AppBar>
-            </HideOnScroll>
-            <Drawer
-                variant="temporary"
-                open={mobileOpen}
-                onClose={handleDrawerToggle}
-                ModalProps={{
-                    keepMounted: true,
-                }}
-                sx={{
-                    display: { xs: 'block', sm: 'block' },
-                    '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                }}
-            >
-                {drawer}
-            </Drawer>
-             <Toolbar />
-        </Box>
+            {/* Mobile Menu (Drawer) */}
+            <AnimatePresence>
+                {mobileOpen && (
+                    <motion.div
+                        key="drawer"
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        variants={drawerVariants}
+                        className="fixed inset-y-0 left-0 w-64 bg-black text-white z-50"
+                    >
+                        {/* Close Icon and Logo Container */}
+                        <div className="flex items-start justify-end p-4">
+                            {/* Close Button */}
+                            <button
+                                onClick={handleDrawerToggle}
+                                className="text-white text-2xl focus:outline-none"
+                                aria-label="Close Menu"
+                            >
+                                <FaTimes />
+                            </button>
+                        </div>
+
+                         {/* Mobile Menu Logo (Centered) */}
+                        <div className="w-full flex justify-center mb-9">
+                            <Link href="/" passHref>
+                                <Image
+                                    src="/logo.jpg"
+                                    alt="Logo"
+                                    width={45}
+                                    height={38}
+                                    style={{ cursor: 'pointer', marginTop: '1rem' }}
+                                />
+                            </Link>
+                        </div>
+
+                        <nav>
+                            <ul>
+                                {navItems.map((item) => (
+                                    <li key={item.label} className="py-2 px-4">
+                                        <Link href={item.href} onClick={handleDrawerToggle}>
+                                            {item.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </nav>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </header>
     );
 });
+
 DrawerAppBar.displayName = 'DrawerAppBar';
 
 export default DrawerAppBar;

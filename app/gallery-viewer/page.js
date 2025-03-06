@@ -54,7 +54,7 @@ const GalleryPreviews = () => {
 
 
   return (
-    <div className="max-w-7xl mt-9 mx-auto">
+    <div className="max-w-7xl mt-9 mx-auto p-5">
       <h1 className="text-4xl md:text-6xl font-space-grotesk font-bold mb-8">
         Photo Gallery Previews
       </h1>

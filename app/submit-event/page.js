@@ -34,7 +34,7 @@ const SubmitEventPage = () => {
   };
 
   const backgroundImage =
-    "https://images.unsplash.com/photo-1496337589254-7e19d01cec44";
+    "https://images.unsplash.com/photo-1492684223066-81342ee5ff30";
 
   return (
     <div
