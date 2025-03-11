@@ -1,4 +1,3 @@
-// components/EventCard.jsx
 "use client";
 
 import React from 'react';
@@ -16,8 +15,15 @@ const EventCard = ({ event }) => {
   });
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+    hidden: { opacity: 0, y: 20 }, // Reduced y offset
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { 
+        duration: 0.3,  // Shortened duration
+        ease: "easeInOut" // Added easing for smoother animation
+      } 
+    },
   };
   
     // শব্দ সংখ্যা সীমিত করার ফাংশন

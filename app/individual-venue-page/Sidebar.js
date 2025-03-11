@@ -76,7 +76,7 @@ const Sidebar = ({ capacity, musicTypes, rating, socialLinks, websiteLink }) => 
         </div>
         <div className="flex flex-col gap-3">
           <Button href={websiteLink} target="_blank" rel="noopener noreferrer" className="text-center">Visit Website</Button>
-          <Button className="bg-[#FFD700] text-black hover:bg-[#FFC700]">Book Venue</Button>
+          {/* <Button className="bg-[#FFD700] text-black hover:bg-[#FFC700]">Book Venue</Button> */}
         </div>
       </div>
     </div>

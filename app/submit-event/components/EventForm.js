@@ -6,7 +6,7 @@ const EventForm = ({ formData, handleChange, handleSubmit }) => {
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Example fields - adapt to your form */}
       <div>
-        <label htmlFor="name" className="block text-sm font-medium text-gray-800">Event Name</label> {/* Changed text color */}
+        <label htmlFor="name" className="block text-sm font-medium text-gray-800">Event Name</label>
         <input
           type="text"
           id="name"
@@ -18,7 +18,7 @@ const EventForm = ({ formData, handleChange, handleSubmit }) => {
       </div>
 
       <div>
-        <label htmlFor="date" className="block text-sm font-medium text-gray-800">Date</label> {/* Changed text color */}
+        <label htmlFor="date" className="block text-sm font-medium text-gray-800">Date</label>
         <input
           type="date"
           id="date"
@@ -30,7 +30,7 @@ const EventForm = ({ formData, handleChange, handleSubmit }) => {
       </div>
 
       <div>
-        <label htmlFor="time" className="block text-sm font-medium text-gray-800">Time</label> {/* Changed text color */}
+        <label htmlFor="time" className="block text-sm font-medium text-gray-800">Time</label>
         <input
           type="time"
           id="time"
@@ -42,7 +42,7 @@ const EventForm = ({ formData, handleChange, handleSubmit }) => {
       </div>
 
       <div>
-        <label htmlFor="venue" className="block text-sm font-medium text-gray-800">Venue</label> {/* Changed text color */}
+        <label htmlFor="venue" className="block text-sm font-medium text-gray-800">Venue</label>
         <input
           type="text"
           id="venue"
@@ -52,8 +52,9 @@ const EventForm = ({ formData, handleChange, handleSubmit }) => {
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white/50 backdrop-filter backdrop-blur-sm text-gray-900"
         />
       </div>
+
       <div>
-        <label htmlFor="musicType" className="block text-sm font-medium text-gray-800">Music Type</label> {/* Changed text color */}
+        <label htmlFor="musicType" className="block text-sm font-medium text-gray-800">Music Type</label>
         <input
           type="text"
           id="musicType"
@@ -65,7 +66,31 @@ const EventForm = ({ formData, handleChange, handleSubmit }) => {
       </div>
 
       <div>
-        <label htmlFor="description" className="block text-sm font-medium text-gray-800">Description</label> {/* Changed text color */}
+        <label htmlFor="ticketPurchaseLink" className="block text-sm font-medium text-gray-800">Ticket Purchase Link</label>
+        <input
+          type="url"
+          id="ticketPurchaseLink"
+          name="ticketPurchaseLink"
+          value={formData.ticketPurchaseLink}
+          onChange={handleChange}
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white/50 backdrop-filter backdrop-blur-sm text-gray-900"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="submitterContact" className="block text-sm font-medium text-gray-800">Your Contact Information</label>
+        <input
+          type="text"  // Or "email", "tel", depending on what contact info you want
+          id="submitterContact"
+          name="submitterContact"
+          value={formData.submitterContact}
+          onChange={handleChange}
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white/50 backdrop-filter backdrop-blur-sm text-gray-900"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="description" className="block text-sm font-medium text-gray-800">Description</label>
         <textarea
           id="description"
           name="description"
@@ -75,8 +100,9 @@ const EventForm = ({ formData, handleChange, handleSubmit }) => {
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm bg-white/50 backdrop-filter backdrop-blur-sm text-gray-900"
         />
       </div>
+
       <div>
-        <label htmlFor="eventFlyer" className="block text-sm font-medium text-gray-800">Event Flyer</label> {/* Changed text color */}
+        <label htmlFor="eventFlyer" className="block text-sm font-medium text-gray-800">Event Flyer</label>
         <input
           type="file"
           id="eventFlyer"
