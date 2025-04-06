@@ -12,7 +12,7 @@ const nextConfig = {
   webpack(config) {
     config.resolve.alias = {
       ...config.resolve.alias,
-      '@': path.resolve(__dirname), // আপনার প্রকল্পের রুট ডিরেক্টরি
+      '@': path.resolve(new URL('.', import.meta.url).pathname), 
     };
     return config;
   },
