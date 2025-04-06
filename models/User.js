@@ -15,38 +15,29 @@ const UserSchema = new Schema({
     lowercase: true,
     trim: true,
   },
-  username: { // You might get this from Clerk or allow users to set it later
-    type: String,
-    unique: true,
-    sparse: true, // Allows multiple null values but unique non-null values
-    trim: true,
-  },
-  firstName: { // Optional: get from Clerk if available
+  firstName: { // Will come from Google/Apple profile
     type: String,
     trim: true,
   },
-  lastName: { // Optional: get from Clerk if available
+  lastName: { // Will come from Google/Apple profile (might be null/empty)
     type: String,
     trim: true,
   },
-  photo: { // Optional: get from Clerk if available
+  photo: { // Will come from Google/Apple profile
     type: String, // URL of the profile photo
   },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-  updatedAt: {
-    type: Date,
-    default: Date.now,
-  },
-  // Add any other fields you want to store for your user
-  // e.g., roles, preferences, etc.
-  role: {
+  provider: { // To track how the user signed up (optional but helpful)
     type: String,
-    enum: ['user', 'admin'], // Example roles
-    default: 'user',
-  }
+    enum: ['oauth_google', 'oauth_apple'], // Possible providers based on your setup
+    required: true, // Make it required if you want to always track the provider
+  },
+  isAdmin: { // <<<--- NEW: isAdmin property
+    type: Boolean,
+    default: false, // Default value is false
+  },
+  // Add any other fields specific to your application needs
+  // e.g., preferences, saved events, etc.
+
 }, {
   timestamps: true // Automatically manage createdAt and updatedAt timestamps
 });
