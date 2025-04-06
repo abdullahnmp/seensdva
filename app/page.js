@@ -1,4 +1,5 @@
-import HomeHub from "./HomeHub/HomeHub"
+import HomeHub from "./HomeHub/HomeHub";
+
 
 
 export default function Home() {
